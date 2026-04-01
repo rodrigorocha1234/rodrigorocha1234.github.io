@@ -488,3 +488,10 @@ footer {
 .contact-item small{
     color:#cbd5e1;
 }
+
+
+.about-card {
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 12px;
+}
