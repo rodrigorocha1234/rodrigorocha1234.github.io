@@ -9,6 +9,11 @@ permalink: /projects/
 <div class="projects-grid">
 {% for post in site.posts %}
     <div class="card">
+
+        {% if post.thumbnail %}
+        <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="project-thumb">
+        {% endif %}
+
         <h3>{{ post.title }}</h3>
 
         <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>

@@ -1,0 +1,50 @@
+---
+layout: post
+title:  "Transcrição das legendas de um vídeo do youtube e prepararando o resumo com a API do google gemini"
+summary: "A ideia surgiu de um short do canal Asimov Academy (https://www.youtube.com/shorts/V1PNrhV9qjA), com alguns extras adicionados comforme irá ser descrito no tópico 2."
+author: Rodrigo
+date: '2025-02-27 21:21:00 -0300'
+category: ['python', 'webscraping', 'selenium']
+thumbnail: /assets/img/posts/transcricao_youtube/thumb.png
+keywords: python, webscraping
+usemathjax: true
+permalink: /blog/transcricao_youtube
+---
+
+
+
+## 2- Fluxo do projeto:
+
+Os links dos vídeos irão ser guardados em um excel  e lidos posteriormente, depois irá ser utilizado a biblioteca do python youtube_transcript_api para baixar as transcrições e as transcrições serão submetida ao modelo com a seguinte sentença “Crie um resumo com base nessa transcrição do vídeo do youtube: '{texto}' e formate para ser salvo em um arquivo docx inclua títulos e subtitulos e formate o texto como 'justificado' quando possível. Faça assim. título nível 1 marque com ## subtibulo, marque com ##, paragrafo marque com *” 
+Depois, a resposta do google gemini ira ser formatada para documento word e ser salva.
+ 
+## 3 Diagrama de classe
+A figura abaixo, mostra um diagrama de classe para o projeto, a ideia, de maneira geral, é consumir um arquivo (excel), no qual, os id’s dos vídeos do youtube irão ser submetidos a um serviço de transcrição de legendas (youtube_transcript_api), logo em seguida, a transcrição irá ser submetida a um modelo de chat ia (Google Gemini), logo depois, o texto da resposta do modelo de ia irá ser formatado e salvo em um arquivo (docx), a transcrição bruta,  também irá ser salva em um arquivo (txt) e marcando em um arquivo (excel), as url’s que já baixaram a transcrição.
+
+![Exemplo de imagem](https://raw.githubusercontent.com/rodrigorocha1/transcricao_youtube/main/docs/diagrama%20de%20classe.png)
+
+
+## 4- Vídeo
+
+
+
+
+
+[![Assistir ao vídeo de demonstração do dashboard](https://img.shields.io/badge/🎬%20Assistir%20ao%20vídeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/k5ioY-fKTp)
+
+
+<div style="text-align:center;"> 
+  <iframe width="800" height="600" 
+    src="https://www.youtube.com/embed/k5ioY-fKTp" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+
+
+[Link do reposítório](https://github.com/rodrigorocha1/transcricao_youtube)
+
+
