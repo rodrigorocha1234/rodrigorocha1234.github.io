@@ -446,24 +446,45 @@ footer {
 }
 
 
-.contact-simple{
-    max-width:700px;
-    margin:40px auto;
+.contact-page{
+    max-width:900px;
+    margin:50px auto;
+    padding:20px;
+}
+
+.contact-card{
     background:#111827;
+    border-radius:18px;
     padding:30px;
-    border-radius:14px;
 }
 
-.contact-simple p{
-    font-size:1.1rem;
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    background:#1e293b;
     margin-bottom:18px;
-}
-
-.contact-simple a{
-    color:#3b82f6;
+    padding:18px;
+    border-radius:14px;
     text-decoration:none;
+    color:white;
+    transition:0.3s;
 }
 
-.contact-simple a:hover{
-    text-decoration:underline;
+.contact-item:hover{
+    background:#2563eb;
+    transform:translateX(6px);
+}
+
+.icon{
+    font-size:2rem;
+}
+
+.contact-item strong{
+    display:block;
+    font-size:1.1rem;
+}
+
+.contact-item small{
+    color:#cbd5e1;
 }

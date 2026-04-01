@@ -4,14 +4,42 @@ title: Contato
 permalink: /contact/
 ---
 
-<h2 class="section-title">Contato</h2>
+<section class="contact-page">
 
-<div class="contact-simple">
+    <h1 class="section-title">Contato</h1>
 
-    <p>💻 <a href="https://github.com/rodrigorocha1234" target="_blank">GitHub</a></p>
+    <div class="contact-card">
 
-    <p>🔗 <a href="https://www.linkedin.com/in/rodrigo-rocha-dados" target="_blank">LinkedIn</a></p>
+ 
 
-    <p>📧 <a href="mailto:silva.rodrigo31@gmail.com">Email</a></p>
+        <div class="contact-links">
 
-</div>
+            <a href="https://github.com/rodrigorocha1234" target="_blank" class="contact-item">
+                <div class="icon">💻</div>
+                <div>
+                    <span>GitHub</span>
+                    <small>github.com/rodrigorocha1234</small>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/rodrigo-rocha-dados" target="_blank" class="contact-item">
+                <div class="icon">🔗</div>
+                <div>
+                    <span>LinkedIn</span>
+                    <small>linkedin.com/in/rodrigo-rocha-dados</small>
+                </div>
+            </a>
+
+            <a href="mailto:silva.rodrigo31@gmail.com" class="contact-item">
+                <div class="icon">📧</div>
+                <div>
+                    <span>Email</span>
+                    <small>silva.rodrigo31@gmail.com</small>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
