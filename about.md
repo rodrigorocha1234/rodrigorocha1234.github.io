@@ -48,22 +48,6 @@ permalink: /about/
 
     </div>
 
-    <div class="about-card">
-
-        <h2>Projetos em Inteligência Artificial</h2>
-
-        <h3>Previsão de preços de veículos</h3>
-        <p>
-            Aplicação de modelos supervisionados:
-            Random Forest, Árvore de Decisão, SVM, Redes Neurais e Regressões.
-        </p>
-
-        <h3>Agrupamento de comentários do YouTube</h3>
-        <p>
-            Deep Learning com PyTorch utilizando Restricted Boltzmann Machine para agrupamento semântico.
-        </p>
-
-    </div>
 
     <div class="about-card">
 
