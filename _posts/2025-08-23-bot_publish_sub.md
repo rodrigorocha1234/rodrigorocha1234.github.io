@@ -98,4 +98,4 @@ A organização do sistema segue a seguinte estrutura:
 </div>
 
 
-[Link do reposítório](https://github.com/rodrigorocha1/bot_publish_subscribe)
+[Link do reposítório](https://github.com/rodrigorocha1234/bot_publish_subscribe)
