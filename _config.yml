@@ -1,0 +1,10 @@
+title: Rodrigo Rocha | Data Engineering & AI
+description: Portfólio profissional
+
+baseurl: ""
+url: "https://rodrigorocha1234.github.io"
+
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
