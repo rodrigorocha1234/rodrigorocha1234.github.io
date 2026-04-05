@@ -1,6 +1,5 @@
-title: Rodrigo Rocha | Engenheiro de dados & AI
-description: Portfólio profissional
-
+title: Rodrigo Rocha | Engenheiro de Dados | Machine Learning | Deep Learning
+description: Portfólio profissional com projetos de Engenharia de Dados, Machine Learning, AWS, Python e Inteligência Artificial.
 baseurl: ""
 url: "https://rodrigorocha1234.github.io"
 
@@ -8,5 +7,5 @@ markdown: kramdown
 
 plugins:
   - jekyll-feed
-
-  
+  - jekyll-sitemap
+  - jekyll-seo-tag

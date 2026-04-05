@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>{{ page.title }}</title>
+    <title>{{ page.title | default: site.title }} | Portfólio</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
