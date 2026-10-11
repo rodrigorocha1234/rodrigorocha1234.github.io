@@ -1,0 +1,20 @@
+# ========================================================
+# Como Iniciar o Projeto (Jekyll - GitHub Pages)
+# ========================================================
+
+1. Pré-requisitos:
+   - Ruby e Bundler instalados.
+
+2. Instalar dependências (caso seja a primeira vez ou novas gems):
+   bundle install
+
+3. Iniciar o servidor local de desenvolvimento:
+   bundle exec jekyll serve --livereload
+
+4. Acessar no navegador:
+   http://localhost:4000
+   ou
+   http://127.0.0.1:4000
+
+5. Parar o servidor:
+   Pressione Ctrl + C no terminal.
