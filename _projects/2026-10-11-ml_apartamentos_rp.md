@@ -182,7 +182,8 @@ Hiperparâmetros estritamente externos (YAML). Todo pré-processamento (imputaç
 
 ## 4 – Interpretação para a equipe de negócio
 
-*Um apartamento localizado no jardim botânico (zona sul) com três quartos, dois banheiros , duas vagas na garagem, a tabela abaixo mostra a interpretação dos dados da api.*
+*Um apartamento localizado no Sumarezinho (zona Oeste) com três quartos, dois banheiros , uma vagas na garagem, a tabela abaixo mostra a interpretação dos dados da api.
+*
 
  | **Campo no JSON** | **Valor Retornado** | **Conceito Imobiliário** | **Interpretação Prática para a Equipe de Negócio & Roteiro de Conversa** | 
  | ----------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | 
