@@ -181,73 +181,254 @@ Hiperparâmetros estritamente externos (YAML). Todo pré-processamento (imputaç
  | **RN-08** | **Desvio Percentual de Mercado** | `diferenca_perc_* = (valor_previsto − media_mercado) ÷ media × 100` | **Qualificação do Comprador:** Mostra se a unidade pertence ao padrão médio local ou se está no topo da pirâmide de renda. | 
 
 ## 4 – Interpretação para a equipe de negócio
+## 🗺️ Panorama Territorial: Interpretação Prática de 1 Bairro por Zona
 
-*Um apartamento localizado no Sumarezinho (zona Oeste) com três quartos, dois banheiros , uma vagas na garagem, a tabela abaixo mostra a interpretação dos dados da api.
-*
+### 5 Regiões de Ribeirão Preto
 
- | **Campo no JSON** | **Valor Retornado** | **Conceito Imobiliário** | **Interpretação Prática para a Equipe de Negócio & Roteiro de Conversa** | 
- | ----------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | 
- | **1. Identificação e Precificação Base do Imóvel** |  |  |  | 
- | `valor_previsto` | **R$ 291.609,93** | Preço Justo Algorítmico | **Âncora de Avaliação:** valor central estimado pelo modelo de Machine Learning. Pode ser utilizado como referência principal para anúncio e negociação. | 
- | `valor_m2_previsto` | **R$ 3.430,71 / m²** | Valor Unitário de Área | **Métrica de Equalização:** permite comparar o imóvel com outras unidades de diferentes tamanhos dentro da mesma região. | 
- | `Zona` | **"Zona Oeste"** | Macrorregião | Identifica a região geográfica utilizada pelo modelo para contextualizar a precificação. | 
- | `Bairro` | **"Sumarezinho"** | Micro-localização | Identifica o bairro utilizado pelo modelo como referência para a análise microlocal. | 
- | **2. Contexto Macrolocal: Cidade de Ribeirão Preto (Nível Global)** |  |  |  | 
- | `global_mediana_mercado` | **R$ 290.000,00** | Mediana Municipal | Representa o valor mediano utilizado como referência para o mercado global. O imóvel previsto está praticamente alinhado à mediana global. | 
- | `global_media_mercado` | **R$ 422.828,81** | Média Municipal | Média de mercado utilizada como referência global. O valor previsto está abaixo dessa média. | 
- | `global_mediana_m2_mercado` | **R$ 4.738,10 / m²** | Mediana do m² Global | Referência do preço mediano por metro quadrado no mercado global. | 
- | `diferenca_perc_global` | **−31,03%** | Desvio sobre a Média Global | O valor previsto está **31,03% abaixo da média global de mercado**, indicando posicionamento abaixo do ticket médio geral. | 
- | `indice_imovel_global` | **0,7241x** | Múltiplo do m² Global | O m² previsto corresponde a aproximadamente **72,41% da mediana global do m²**, ou seja, está cerca de **27,59% abaixo** desse benchmark. | 
- | `global_desconto_5` | **R$ 275.500,00** | Referência Global −5% | Faixa de negociação equivalente a 5% abaixo da mediana global de R$ 290 mil. | 
- | `global_desconto_10` | **R$ 261.000,00** | Referência Global −10% | Faixa equivalente a 10% abaixo da mediana global. | 
- | `global_desconto_15` | **R$ 246.500,00** | Referência Global −15% | Faixa de desconto mais agressiva, equivalente a 15% abaixo da mediana global. | 
- | `global_faixa_segura_piso` | **R$ 261.000,00** | Piso Global Seguro | Referência mínima da faixa segura global, equivalente a 90% da mediana global. | 
- | `global_faixa_segura_teto` | **R$ 290.000,00** | Teto Global Seguro | Limite superior da faixa segura global, correspondente à mediana global. | 
- | **3. Contexto Regional: Zona Oeste** |  |  |  | 
- | `zona_mediana_mercado` | **R$ 220.000,00** | Mediana da Zona Oeste | Valor mediano de mercado utilizado como benchmark para a Zona Oeste. | 
- | `zona_media_mercado` | **R$ 243.404,97** | Média da Zona Oeste | Média dos valores de mercado utilizados como referência para a zona. | 
- | `zona_mediana_m2_mercado` | **R$ 4.166,67 / m²** | Mediana do m² na Zona | Referência do preço mediano por metro quadrado da Zona Oeste. | 
- | `valor_previsto_zona` | **R$ 291.609,93** | Previsão do Imóvel na Zona | O valor previsto pelo modelo para este imóvel é utilizado também como referência da previsão dentro da zona. | 
- | `valor_m2_previsto_zona` | **R$ 3.430,71 / m²** | Previsão do m² na Zona | Valor previsto por metro quadrado para o imóvel dentro da análise regional. | 
- | `diferenca_perc_zona` | **+19,80%** | Desvio sobre a Mediana da Zona | O valor previsto está **19,80% acima da mediana da Zona Oeste**, indicando posicionamento superior ao padrão mediano regional. | 
- | `indice_imovel_zona` | **0,8234x** | Múltiplo do m² da Zona | O m² previsto corresponde a aproximadamente **82,34% da mediana do m² da Zona Oeste**, ficando cerca de 17,66% abaixo desse benchmark. | 
- | `zona_desconto_5` | **R$ 209.000,00** | Referência Zona −5% | Valor correspondente a 5% abaixo da mediana regional de R$ 220 mil. | 
- | `zona_desconto_10` | **R$ 198.000,00** | Referência Zona −10% | Valor correspondente a 10% abaixo da mediana regional. | 
- | `zona_desconto_15` | **R$ 187.000,00** | Referência Zona −15% | Faixa de desconto agressivo, equivalente a 15% abaixo da mediana regional. | 
- | `zona_faixa_segura_piso` | **R$ 198.000,00** | Piso Regional Seguro | Referência mínima da faixa segura regional, correspondente a 90% da mediana da Zona Oeste. | 
- | `zona_faixa_segura_teto` | **R$ 220.000,00** | Teto Regional Seguro | Limite superior da faixa segura regional, correspondente à mediana da Zona Oeste. | 
- | **4. Contexto Microlocal: Sumarezinho (Nível Bairro)** |  |  |  | 
- | `bairro_mediana_mercado` | **R$ 255.000,00** | Mediana do Bairro | Valor mediano utilizado como principal benchmark de mercado para Sumarezinho. | 
- | `bairro_media_mercado` | **R$ 281.768,00** | Média do Bairro | Média dos valores de mercado utilizada como referência para o bairro. | 
- | `bairro_mediana_m2_mercado` | **R$ 4.415,41 / m²** | Mediana do m² no Bairro | Principal referência de preço por metro quadrado para a análise microlocal. | 
- | `valor_previsto_bairro` | **R$ 291.609,93** | Previsão do Imóvel no Bairro | O valor previsto pelo modelo para este imóvel é utilizado também como referência da previsão no bairro. | 
- | `valor_m2_previsto_bairro` | **R$ 3.430,71 / m²** | Previsão do m² no Bairro | Valor previsto por metro quadrado para o imóvel dentro da análise do bairro. | 
- | `diferenca_perc_bairro` | **+3,49%** | Desvio sobre a Mediana do Bairro | O valor previsto está **3,49% acima da mediana de mercado de Sumarezinho**, indicando forte proximidade ao padrão central do bairro. | 
- | `indice_imovel_bairro` | **0,7770x** | Múltiplo do m² do Bairro | O m² previsto corresponde a aproximadamente **77,70% da mediana do m² do bairro**, ficando cerca de 22,30% abaixo do benchmark. | 
- | `bairro_desconto_5` | **R$ 242.250,00** | Desconto Comercial de 5% | Referência equivalente a 5% abaixo da mediana do bairro. | 
- | `bairro_desconto_10` | **R$ 229.500,00** | Desconto Comercial de 10% | Referência equivalente a 10% abaixo da mediana do bairro. | 
- | `bairro_desconto_15` | **R$ 216.750,00** | Desconto Agressivo de 15% | Faixa de negociação equivalente a 15% abaixo da mediana do bairro. | 
- | `bairro_faixa_segura_piso` | **R$ 229.500,00** | Piso Seguro de Venda | Referência mínima da faixa segura do bairro, correspondente a 90% da mediana de R$ 255 mil. | 
- | `bairro_faixa_segura_teto` | **R$ 255.000,00** | Teto Seguro de Venda | Limite superior da faixa segura, correspondente à mediana de mercado do bairro. | 
- | **5. Previsões Hierárquicas do Modelo** |  |  |  | 
- | `valor_previsto_zona` | **R$ 291.609,93** | Previsão Hierárquica — Zona | Valor previsto retornado pela API para o nível regional. Neste caso, é idêntico ao `valor_previsto`. | 
- | `valor_previsto_bairro` | **R$ 291.609,93** | Previsão Hierárquica — Bairro | Valor previsto retornado pela API para o nível microlocal. Neste caso, é idêntico ao `valor_previsto`. | 
- | `valor_m2_previsto_zona` | **R$ 3.430,71 / m²** | Previsão do m² — Zona | Valor unitário previsto para o nível regional. | 
- | `valor_m2_previsto_bairro` | **R$ 3.430,71 / m²** | Previsão do m² — Bairro | Valor unitário previsto para o nível microlocal. | 
- | `valor_previsto_medio_zona` | **R$ 291.609,93** | Média da Previsão na Zona | Média retornada pelo modelo para a previsão no contexto da zona. | 
- | `valor_previsto_medio_bairro` | **R$ 291.609,93** | Média da Previsão no Bairro | Média retornada pelo modelo para a previsão no contexto do bairro. | 
- | **6. Estratégia de Negociação, Margens de Desconto e Fechamento** |  |  |  | 
- | `bairro_desconto_5` | **R$ 242.250,00** | Negociação com 5% de desconto | Primeiro nível de concessão em relação à mediana de mercado do bairro. | 
- | `bairro_desconto_10` | **R$ 229.500,00** | Negociação com 10% de desconto | Segundo nível de concessão, utilizado para negociações mais agressivas. | 
- | `bairro_desconto_15` | **R$ 216.750,00** | Negociação com 15% de desconto | Nível de desconto mais agressivo em relação ao benchmark do bairro. | 
- | `bairro_faixa_segura_piso` | **R$ 229.500,00** | Piso Seguro | Referência de 90% da mediana do bairro para controle da negociação. | 
- | `bairro_faixa_segura_teto` | **R$ 255.000,00** | Teto Seguro | Referência máxima da faixa segura baseada na mediana do bairro. | 
+Ribeirão Preto possui dinâmicas imobiliárias marcadamente heterogêneas. Avaliar um imóvel sem contextualizar a sua macrorregião leva a erros graves: subprecificar apartamentos de alto padrão no sul ou inflacionar unidades econômicas no norte.
 
-###
+Abaixo, detalhamos a **interpretação prática do retorno da API para 1 bairro representativo de cada uma das 5 Zonas** da cidade:
 
-> **"O modelo de inteligência de mercado estimou o valor deste imóvel em R$ 291.609,93, equivalente a R$ 3.430,71 por metro quadrado. No mercado global, a mediana é de R$ 290 mil, enquanto a mediana da Zona Oeste é de R$ 220 mil e a de Sumarezinho é de R$ 255 mil. Isso posiciona o imóvel praticamente na mediana global e 3,49% acima da mediana do próprio bairro. Ao mesmo tempo, o valor previsto está 19,80% acima da mediana da Zona Oeste, demonstrando um posicionamento superior ao padrão regional. Para negociação, os benchmarks de segurança do bairro ficam entre R$ 229.500,00 e R$ 255.000,00."**
+| Zona | Bairro Representativo | Tipologia | Valor Previsto | Previsto / m² | Mediana do Bairro | Índice m² | Faixa Segura (Piso / Teto) | Posicionamento de Mercado |
+|---|---|---|---|---|---|---|---|---|
+| **Zona Sul** | **Jardim Botânico** | 85 m² • 3Q • 2V | **R$ 631.396,73** | R$ 7.428,20 | R$ 626.000 (R$ 6.934/m²) | **1,07x** | R$ 568,2 mil – R$ 694,5 mil | Alto Padrão / Nobre & Lazer |
+| **Zona Leste** | **Jardim Paulista** | 68 m² • 2Q • 1V | **R$ 312.800,00** | R$ 4.600,00 | R$ 300.000 (R$ 4.600/m²) | **1,00x** | R$ 281,5 mil – R$ 344,0 mil | Classe Média Consolidada & Comércio |
+| **Zona Oeste** | **Sumarezinho** | 65 m² • 2Q • 1V | **R$ 275.000,00** | R$ 4.230,77 | R$ 245.000 (R$ 4.348/m²) | **0,97x** | R$ 247,5 mil – R$ 302,5 mil | Polo Universitário USP & Rentabilidade |
+| **Zona Norte** | **Campos Elíseos** | 58 m² • 2Q • 1V | **R$ 238.000,00** | R$ 4.103,45 | R$ 260.000 (R$ 4.167/m²) | **0,98x** | R$ 214,2 mil – R$ 261,8 mil | Tradicional, Popular & 1º Imóvel |
+| **Centro** | **Centro** | 95 m² • 3Q • 1V | **R$ 365.000,00** | R$ 3.842,11 | R$ 380.000 (R$ 3.842/m²) | **1,00x** | R$ 328,5 mil – R$ 401,5 mil | Plantas Amplas, Retrofit & Serviços a Pé |
 
-*5 – Demonstração do projeto:*
+### 💡 Nota de Governança Comercial — Faixa Segura de Negociação (RN-05)
+
+A coluna **Faixa Segura (Piso / Teto)** é calculada estritamente sobre o **Valor Previsto da unidade avaliada**:
+
+- **Piso = -10%:** alçada máxima para contrapropostas e pagamento à vista.
+- **Teto = +10%:** valor de vitrine nos portais para margem de barganha.
+
+**Exemplo prático do Sumarezinho:**
+
+Para uma unidade estimada em **R$ 275.000,00**, o corredor seguro situa-se entre **R$ 247,5 mil e R$ 302,5 mil** — posicionando a estimativa do modelo no **centro exato da negociação**, sem conflito com a mediana histórica geral de R$ 245 mil (que reflete unidades menores de 56 m²).
+
+---
+
+### 1. Zona Sul — Jardim Botânico
+
+#### Alto Padrão
+
+**Perfil Imobiliário:**
+
+Vetor de maior valorização de Ribeirão Preto. Apartamento de 85 m² avaliado a **R$ 631,3 mil (R$ 7.428/m²)**.
+
+O índice do bairro é **1,07x**, o que reflete a qualidade do condomínio com lazer clube frente à mediana de R$ 6.934/m².
+
+**🗣️ Argumento de Fechamento:**
+
+> "No Jardim Botânico, unidades de 3 quartos com 2 vagas sustentam valor acima de R$ 7,4 mil/m² devido à alta demanda e parques. Pela regra RN-05, nosso piso de segurança é R$ 568,2 mil para pagamento à vista, com teto de vitrine em R$ 694,5 mil."
+
+---
+
+### 2. Zona Leste — Jardim Paulista
+
+#### Classe Média
+
+**Perfil Imobiliário:**
+
+Região de classe média consolidada (Av. Treze de Maio). Apartamento de 68 m² previsto a **R$ 312,8 mil (R$ 4.600/m²)**, exatamente alinhado ao m² mediano do bairro (índice **1,00x**), assegurando excelente liquidez.
+
+**🗣️ Argumento de Fechamento:**
+
+> "O valor deste apartamento está perfeitamente alinhado à média do Jardim Paulista. Não há risco de sobrepreço. O corredor operacional (RN-05) baliza propostas de R$ 281,5 mil (-10%) a R$ 344,0 mil (+10%), garantindo liquidez imediata."
+
+---
+
+### 3. Zona Oeste — Sumarezinho
+
+#### Universitário / USP
+
+**Perfil Imobiliário:**
+
+Bairro dinâmico vizinho ao campus da USP. Apartamento de 65 m² estimado a **R$ 275 mil (R$ 4.230/m²)**.
+
+O m² previsto está **3% abaixo da mediana local (índice 0,97x)**, configurando excelente oportunidade de rendimento.
+
+**🗣️ Argumento de Fechamento:**
+
+> "Excelente ativo para investidores: o custo de R$ 4.230/m² é competitivo. O valor previsto de R$ 275 mil está no centro exato da faixa segura da unidade (R$ 247,5 mil a R$ 302,5 mil), permitindo absorver propostas à vista a partir de R$ 247,5 mil sem comprometer a margem patrimonial."
+
+---
+
+### 4. Zona Norte — Campos Elíseos
+
+#### 1º Imóvel / Popular
+
+**Perfil Imobiliário:**
+
+Bairro tradicional com forte comércio (Av. Saudade). Apartamento de 58 m² estimado a **R$ 238 mil (R$ 4.103/m²)**.
+
+Ticket de entrada acessível com custo de manutenção condominial reduzido e farto transporte público.
+
+**🗣️ Argumento de Fechamento:**
+
+> "Ideal para quem quer sair do aluguel ou adquirir o primeiro apartamento. Com previsão de R$ 238 mil, a faixa segura de negociação (RN-05) situa-se entre R$ 214,2 mil e R$ 261,8 mil, viabilizando financiamentos facilitados."
+
+---
+
+### 5. Centro — Centro Histórico
+
+#### Plantas Amplas / Retrofit
+
+**Perfil Imobiliário:**
+
+Edifícios consolidados com metragens amplas (mediana de 103 m²). Apartamento de 95 m² previsto a **R$ 365 mil (R$ 3.842/m²)**.
+
+Apresenta o **menor valor por m² da cidade** entre bairros centrais, com enorme potencial de reforma (*retrofit*).
+
+**🗣️ Argumento de Fechamento:**
+
+> "Comprar 95 m² a R$ 3.842/m² no Centro é o melhor negócio em espaço por real da cidade. Avaliado em R$ 365 mil, seu corredor seguro (RN-05) vai de R$ 328,5 mil a R$ 401,5 mil, dando margem confortável para reformas."
+
+# 5 - Interpretação dos resultados da API preditiva
+## 📘 Manual de Vendas: Como o Corretor e o Gestor Devem Interpretar os 32 Campos da API
+
+Quando o sistema de CRM ou aplicativo do corretor consome o endpoint `/invocations`, a resposta oferece 3 pilares de decisão para a mesa de negociação:
+
+### 1. Preço de Entrada
+
+#### `valor_previsto` & `valor_m2_previsto`
+
+É a âncora técnica de valor justo. Use para balizar o anúncio inicial. O preço do m² permite comparar apartamentos de metragens diferentes no mesmo condomínio.
+
+### 2. Posicionamento
+
+#### `indice_imovel_bairro` & `diferenca_perc_*`
+
+Mostra se a unidade é de padrão superior (índice > 1.15) ou oportunidade de liquidez rápida (índice < 0.85). Justifica o preço para o comprador com base em dados de mercado.
+
+### 3. Balizador de Contraproposta
+
+#### `*_faixa_segura_piso` & `*_desconto_10`
+
+Define o limite máximo de concessão de desconto antes da venda se tornar prejudicial ao proprietário ou descolada da realidade local do bairro.
+
+### Casos Práticos de Negociação
+
+#### Cenário 1: O Proprietário Quer Pedir Muito Acima do Mercado
+
+Se o proprietário quer anunciar por R$ 660 mil, mas a API retorna `valor_previsto: 600.000` e `diferenca_perc_bairro: +20%`: o corretor tem o argumento perfeito:
+
+> "O valor pedido está 10% acima da avaliação algorítmica do modelo e 20% acima da média do bairro. Sem um ajuste ou diferencial exclusivo de acabamento, o imóvel corre alto risco de ficar meses encalhado."
+
+#### Cenário 2: O Comprador Faz uma Proposta Muito Baixa
+
+Se o comprador oferece R$ 450 mil em um imóvel avaliado em R$ 600 mil, o corretor consulta `bairro_faixa_segura_piso` (R$ 540 mil):
+
+> "A sua proposta de R$ 450 mil está 17% abaixo do piso seguro de negociação da inteligência de dados para o Jardim Botânico. O valor mínimo viável para fechamento é R$ 540 mil."
+
+#### Cenário 3: Avaliação de Carteira de Imóveis (Lotes Múltiplos)
+
+Ao enviar um lote de 20 apartamentos de uma construtora, a API preenche `valor_previsto_zona` e `valor_previsto_bairro` com as médias consolidadas do lote, permitindo que a diretoria visualize instantaneamente o ticket médio por empreendimento e região.
+
+---
+
+### 🔍 Exemplo Prático Real: Apartamento no Sumarezinho (Zona Oeste)
+
+#### Caso de Análise Real
+
+Veja a interpretação dos dados retornados para uma unidade de **85 m² no Sumarezinho**:
+
+| Indicador | Valor | Interpretação |
+|---|---|---|
+| **Preço Previsto** | **R$ 291.609,93** | R$ 3.430,71 / m² |
+| **Posição no Bairro** | **+3,49%** | Alinhado com a média local |
+| **Índice do m²** | **0,78x** | 22% abaixo da mediana do m² |
+
+**Diagnóstico de Negócio:**
+
+Embora o preço total (R$ 291,6 mil) esteja quase 20% acima da média da Zona Oeste (que é puxada para baixo por unidades minúsculas de 40–50 m²), o **custo por metro quadrado deste imóvel (R$ 3.430/m²) é extremamente vantajoso** (22% abaixo da mediana de R$ 4.415/m² do Sumarezinho).
+
+**🗣️ Argumento de Venda:**
+
+> "Apartamento com metragem ampla (85m²) oferecendo custo por m² de oportunidade, pronto para compradores que priorizam espaço sem pagar o valor inflacionado das zonas centrais."
+
+---
+
+### 💎 Estudo de Caso de Alto Padrão: Jardim Botânico (R$ 801.852,60)
+
+#### Interpretação Completa dos 32 Campos
+
+Abaixo está a **tradução comercial elemento por elemento** do retorno da API para um apartamento de 85 m² no **Jardim Botânico (Zona Sul)**, orientando corretores e diretores comerciais sobre como usar cada métrica para fechar vendas e defender margens:
+
+#### 1. Identificação e Precificação Base do Imóvel
+
+| Campo no JSON | Valor Retornado | Conceito Imobiliário | Interpretação Prática para a Equipe de Negócio & Roteiro de Conversa |
+|---|---|---|---|
+| `valor_previsto` | **R$ 801.852,60** | Preço Justo Algorítmico | **Âncora de Avaliação:** O valor central estimado pelo comitê de Machine Learning. Use como o preço sugerido de anúncio ou proposta inicial firme. |
+| `valor_m2_previsto` | **R$ 9.433,56 / m²** | Valor Unitário de Área | **Métrica de Equalização:** Permite comparar esta unidade de 85 m² com apartamentos de outros tamanhos no mesmo bairro ou condomínio. |
+| `Zona` | `"Zona Sul"` | Macrorregião | Região de maior prestígio e valorização imobiliária em Ribeirão Preto, com maior liquidez para o segmento de médio-alto padrão. |
+| `Bairro` | `"Jardim Botânico"` | Micro-localização | Bairro nobre consolidado com ampla infraestrutura, parques e gastronomia, justificando ticket médio superior à média municipal. |
+
+---
+
+#### 2. Contexto Macrolocal: Cidade de Ribeirão Preto (Nível Global)
+
+| Campo no JSON | Valor Retornado | Conceito Imobiliário | Interpretação Prática para a Equipe de Negócio & Roteiro de Conversa |
+|---|---|---|---|
+| `global_mediana_mercado` | R$ 290.000,00 | Mediana Municipal | Metade dos apartamentos vendidos em toda a cidade custa até R$ 290 mil. Demonstra o padrão popular/médio do município como um todo. |
+| `global_media_mercado` | R$ 422.828,81 | Média Municipal | Média aritmética de Ribeirão Preto (puxada para cima pelos imóveis de alto padrão). |
+| `global_mediana_m2_mercado` | R$ 4.444,44 / m² | Mediana do m² Urbano | Preço mediano do metro quadrado na cidade. Balizador macro de custo construtivo e terreno em Ribeirão Preto. |
+| `diferenca_perc_global` | **+176,50%** | Desvio sobre a Média Urbana | **Enquadramento de Alto Padrão:** Este imóvel custa quase 3 vezes a média da cidade. Mostra ao cliente que se trata de um produto exclusivo do topo da pirâmide. |
+| `indice_imovel_global` | **2,12x** | Múltiplo do m² Municipal | O m² desta unidade (R$ 9.433/m²) é **2,12 vezes mais valorizado** que a mediana municipal (R$ 4.444/m²), atestando a nobreza da localização. |
+| `global_faixa_segura_piso` | R$ 721.667,34 | Piso Global Seguro (−10%) | Valor mínimo de proteção patrimonial considerando o benchmark de 10% de margem operacional. |
+| `global_faixa_segura_teto` | R$ 882.037,86 | Teto Global Seguro (+10%) | Valor máximo aceitável de anúncio caso o apartamento conte com diferenciais exclusivos (andar alto, armários planejados de luxo). |
+
+---
+
+#### 3. Contexto Regional: Zona Sul
+
+| Campo no JSON | Valor Retornado | Conceito Imobiliário | Interpretação Prática para a Equipe de Negócio & Roteiro de Conversa |
+|---|---|---|---|
+| `zona_mediana_mercado` | R$ 480.000,00 | Mediana da Zona Sul | O ponto médio dos imóveis da Zona Sul é R$ 480 mil, mostrando que a zona opera em patamar 65% acima da cidade. |
+| `zona_media_mercado` | R$ 548.232,96 | Média da Zona Sul | Valor médio de negociação dos apartamentos situados na Zona Sul. |
+| `zona_mediana_m2_mercado` | R$ 6.470,59 / m² | Mediana do m² na Zona | Patamar de referência do metro quadrado da Zona Sul como um todo. |
+| `zona_valor_previsto` | R$ 801.852,60 | Média do Lote na Zona | Média das previsões para os imóveis da Zona Sul enviados na chamada (idêntica ao valor unitário em requisição individual). |
+| `valor_m2_previsto_zona` | R$ 9.433,56 / m² | Média do m² no Lote | Preço médio do metro quadrado previsto para as unidades da Zona Sul no lote avaliado. |
+| `diferenca_perc_zona` | **+67,05%** | Desvio sobre a Zona Sul | O apartamento está **67% acima da média da Zona Sul**, justificando que não é um padrão comum da região, mas sim um produto premium. |
+| `indice_imovel_zona` | **1,46x** | Múltiplo do m² da Zona | O metro quadrado está **46% acima da mediana da Zona Sul**, evidenciando o diferencial competitivo do Jardim Botânico. |
+| `zona_faixa_segura_piso` | R$ 721.667,34 | Piso Regional (−10%) | Piso de proteção de margem para evitar subprecificação em negociações na Zona Sul. |
+| `zona_faixa_segura_teto` | R$ 882.037,86 | Teto Regional (+10%) | Teto recomendado para margem de negociação e gordura de contraproposta na Zona Sul. |
+
+---
+
+#### 4. Contexto Microlocal: Jardim Botânico (Nível Bairro)
+
+| Campo no JSON | Valor Retornado | Conceito Imobiliário | Interpretação Prática para a Equipe de Negócio & Roteiro de Conversa |
+|---|---|---|---|
+| `bairro_mediana_mercado` | R$ 440.000,00 | Mediana do Bairro | Metade dos apartamentos do Jardim Botânico custa até R$ 440 mil (bairro com mix de unidades menores de 1-2 quartos e grandes plantas). |
+| `bairro_media_mercado` | R$ 506.000,00 | Média do Bairro | Ticket médio dos apartamentos negociados no Jardim Botânico. |
+| `bairro_mediana_m2_mercado` | R$ 7.428,00 / m² | Mediana do m² no Bairro | **Referência Chave:** O m² de mercado típico no Jardim Botânico gira em torno de R$ 7,4 mil/m². |
+| `bairro_valor_previsto` | R$ 801.852,60 | Média do Lote no Bairro | Média das previsões para os apartamentos do Jardim Botânico incluídos na mesma requisição. |
+| `valor_m2_previsto_bairro` | R$ 9.433,56 / m² | Média do m² no Bairro | Preço médio previsto por m² para as unidades do Jardim Botânico no lote. |
+| `diferenca_perc_bairro` | **+82,24%** | Desvio sobre o Bairro | O imóvel custa 82% a mais que a média do Jardim Botânico porque combina **planta de 85 m² + 2 vagas + 2 banheiros**, superando as plantas compactas locais. |
+| `indice_imovel_bairro` | **1,27x** | Múltiplo do m² do Bairro | **Defesa do Preço:** O m² previsto (R$ 9.433/m²) é **27% mais valorizado** que a mediana do bairro (R$ 7.428/m²). Justifica-se por padrão construtivo superior, vista ou lazer completo. |
+
+---
+
+#### 5. Estratégia de Negociação, Margens de Desconto e Fechamento
+
+| Campo no JSON | Valor Retornado | Conceito Imobiliário | Interpretação Prática para a Equipe de Negócio & Roteiro de Conversa |
+|---|---|---|---|
+| `bairro_desconto_5` | R$ 761.759,97 | Desconto Cortesia (5%) | **Negociação Rápida:** Concessão inicial de fechamento para pagamento à vista ou cliente com crédito pré-aprovado. Preserva 95% da margem. |
+| `bairro_desconto_10` | R$ 721.667,34 | Desconto Comercial (10%) | **Limite de Flexibilidade do Corretor:** Oferta para destravar negociação travada. Corresponde exatamente ao piso de segurança. |
+| `bairro_desconto_15` | R$ 681.574,71 | Desconto Agressivo (15%) | **Zona de Alerta de Deságio:** Aceitável apenas em condições extraordinárias (proprietário com urgência extrema de liquidez). |
+| `bairro_faixa_segura_piso` | **R$ 721.667,34** | Piso Seguro de Venda | **Linha Vermelha:** O corretor *nunca deve aceitar propostas abaixo deste valor* sem autorização expressa da diretoria comercial. |
+| `bairro_faixa_segura_teto` | **R$ 882.037,86** | Teto Seguro de Venda | **Gordura de Anúncio:** Preço máximo inicial para colocar no portal imobiliário garantindo margem para concessão de desconto sem corroer o preço justo. |
+
+---
+
+### 🎙️ Pitch Comercial Pronto para o Corretor Fechar a R$ 800 mil
+
+> "O valor de R$ 801.850,00 foi validado pelo comitê de inteligência de mercado com base em 5.712 transações reais de Ribeirão Preto. No Jardim Botânico, a mediana do metro quadrado é de R$ 7.428,00; este apartamento foi precificado a R$ 9.433,00/m² (índice 1,27x) devido aos diferenciais de 85 m², 2 vagas cobertas e condomínio de alto padrão. Para fechamento à vista nesta semana, temos margem aprovada até o piso seguro de R$ 761.700,00 (desconto de 5%), garantindo uma compra sólida dentro do corredor de segurança patrimonial."
+
+# 6 – Demonstração do projeto:*
 
 {% include youtube.html 
    id="gMFt4OhIO2w" 
