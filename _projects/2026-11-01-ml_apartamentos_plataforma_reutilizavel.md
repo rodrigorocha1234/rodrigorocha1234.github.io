@@ -105,8 +105,8 @@ Após a escolha do modelo campeão, o mlflow libera a consulta via api, conforme
 ## 7 – Demonstração do projeto
 
 {% include youtube.html 
-   id="M9-cC9Anid8" 
+   id="M9-M9-cC9Anid8" 
    title="Usado multiagentes no google antigravity para construir um sistema de Previsão inteligente de preço de apartamento para a cidade de Ribeirão Preto"
 %}
 
-[Link do reposítório](https://github.com/rodrigorocha1234/machine-learning-previsao_preco_ap_v3)
+[Link do reposítório](https://github.com/rodrigorocha1234/machine_learning_apartamentos_rp_pycarret)
